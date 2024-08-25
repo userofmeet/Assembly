@@ -19,7 +19,7 @@ ORG 0000H
 // 16 BIT NUMBER: F1F0H
 MOV R0, #0F0H	// Lower Bit
 MOV R1, #0F1H	// Higher Bit
-MOV R2, #9
+MOV R2, #8
 MOV R3, #00H	// Number of 1s
 MOV R4, #00H	// Number of 0s
 LOWER: MOV A, R0
@@ -31,7 +31,7 @@ PLUS: INC R3
 SJMP SKIP
 SKIP: MOV R0, A
 DJNZ R2, LOWER
-MOV R2, #9
+MOV R2, #8
 HIGHER: MOV A, R1
 CLR C
 RLC A
