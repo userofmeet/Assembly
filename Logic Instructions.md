@@ -48,6 +48,4 @@ MOV R4, A
 END
 ```
 ### Result
-![image](https://github.com/user-attachments/assets/8a021336-3626-44b4-b896-2ca2deabb0bd)
-
-
+![image](https://github.com/user-attachments/assets/01e39fe1-c406-4ff0-911e-d54b12619966)
