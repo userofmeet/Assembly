@@ -16,12 +16,12 @@ END
 ### Code
 ``` Assembly
 ORG 0000H 
-// 16 BIT NUMBER: F1F0H
-MOV R0, #0F0H	// Lower Bit
-MOV R1, #0F1H	// Higher Bit
+# 16 BIT NUMBER: F1F0H
+MOV R0, #0F0H	# Lower Bit
+MOV R1, #0F1H	# Higher Bit
 MOV R2, #8
-MOV R3, #00H	// Number of 1s
-MOV R4, #00H	// Number of 0s
+MOV R3, #00H	# Number of 1s
+MOV R4, #00H	# Number of 0s
 LOWER: MOV A, R0
 CLR C
 RLC A
