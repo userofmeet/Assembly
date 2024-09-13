@@ -94,5 +94,7 @@ MOV R0, A
 END
 ```
 ### Results
+#### Inputs
 ![image](https://github.com/user-attachments/assets/8f51c456-8819-476d-a747-036ef184d9f4)
+#### Outputs
 ![image](https://github.com/user-attachments/assets/9f13a5e5-eaaf-49e7-b6a8-f97fb47f6394)
