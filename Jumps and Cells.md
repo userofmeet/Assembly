@@ -137,7 +137,7 @@ sjmp clearone;
 end;
 ```
 
-## Array of BCD numbers starts from 4001h in memory. End of the array is detected by a non-BCD number
+## 1. Array of BCD numbers starts from 4001h in memory. End of the array is detected by a non-BCD number
 ``` Assembly
 MOV R1, #00H
 MOV DPTR, #4000H
