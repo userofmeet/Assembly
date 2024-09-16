@@ -164,3 +164,73 @@ FINAL: JNC BACK
 SJMP SETONE
 END
 ```
+
+## Program to transfer 10 bytes from external RAM location 30H onwards to 300H onwards.
+### Code
+``` Assembly
+ORG 0000H
+MOV DPTR, #0030H
+MOV R2, #10
+MOV R3, #00H
+MOV R4, #03H
+TRANSFER: MOVX A, @DPTR
+MOV R5, DPL
+MOV R6, DPH
+MOV DPL, R3
+MOV DPH, R4
+INC R3
+MOVX @DPTR, A
+MOV DPL, R5
+MOV DPH, R6
+INC DPTR
+DJNZ R2, TRANSFER
+```
+### Results
+#### Input
+![image](https://github.com/user-attachments/assets/7a217808-66c2-44a4-b39c-24fec9164658)
+#### Output
+![image](https://github.com/user-attachments/assets/ba219fba-d570-4790-bc80-51857ca281b3)
+
+## Program to transfer 10 bytes from internal RAM 30H onwards to external RAM 30H onwards.
+### Code
+``` Assembly
+ORG 0000H            
+MOV R0, #30H         
+MOV DPTR, #30H       
+MOV R2, #10
+TRANSFER: MOV A, @R0        
+INC R0            
+MOVX @DPTR, A     
+INC DPTR          
+DJNZ R2, TRANSFER 
+END
+```
+### Results
+#### Input
+![image](https://github.com/user-attachments/assets/f7725323-d277-4036-ab6b-00cdbbe6b993)
+#### Output
+![image](https://github.com/user-attachments/assets/20454d0b-377e-4806-b6b2-41c720d83b52)
+
+## Program usig procedure to find the number of one in DPTR.
+### Code
+``` Assembly
+ORG 0000H
+MOV DPL, 50H
+MOV DPH, 51H
+MOV R0, #08
+MOV R1, #00H
+PARITY: MOV A, DPH
+ACALL CAL
+MOV R0, #08
+MOV A, DPL
+ACALL CAL
+MOV A, R1
+SKIP: SJMP SKIP
+CAL: RLC A
+JNC FURTHER
+INC R1
+FURTHER: DJNZ R0, CAL
+RET
+```
+### Results
+![image](https://github.com/user-attachments/assets/1126e562-6df0-431d-965b-ff2fbb02df85)
