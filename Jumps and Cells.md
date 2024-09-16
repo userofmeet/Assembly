@@ -140,7 +140,7 @@ end;
 ## 1. Array of BCD numbers starts from 4001h in memory. End of the array is detected by a non-BCD number
 ``` Assembly
 MOV R1, #00H
-MOV DPTR, #4000H
+MOV DPTR, #4001H
 AGAIN:MOVX A, @DPTR
 MOV R7, A
 LCALL CHECKBCD
