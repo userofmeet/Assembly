@@ -10,6 +10,8 @@ MOV DPTR, #0100H
 MOVX @DPTR, A
 END
 ```
+### Outputs
+
 ## Write an instruction or a set of instructions to transfer a byte from internal RAM location 7H to external RAM location 0007H, 0010H and 0100H.
 ## Assembly code
 ``` Assembly
