@@ -62,9 +62,3 @@ MOV DPTR, #0066H
 MOVX @DPTR, A
 END
 ```
-
-## Write a program to transfer byte from internal RAM to internal ROM.
-## Assembly code
-``` Assembly
-
-```
