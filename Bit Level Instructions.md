@@ -64,8 +64,8 @@ MOV 06H, C
 MOV A, 21H
 MOV C, 08H
 ANL C, 09H
-ANL C, 0AH
-ORL C, /`06H
+ANL C, /0AH
+ORL C, 06H
 ```
 
 ## Implement function function using bit level instruction. Y2 = AB’C + ABC’ +A’B’C’
