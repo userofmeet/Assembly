@@ -39,14 +39,15 @@ end
 ``` Assembly
 org 0000h
 mov tmod, #10h;
-mov r0, #5
 repeat: 
 setb p0.0
 acall delay
 clr p0.0;
-exe:
 acall delay
-djnz r0, exe
+acall delay
+acall delay
+acall delay
+acall delay
 sjmp repeat
 delay:
 setb tr1
