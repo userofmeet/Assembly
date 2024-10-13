@@ -3,55 +3,57 @@
 ``` Assembly
 org 0000h
 ljmp main
-
-org 0040h
-main:
-mov r0,#00h
+org 000bh
+inc r0
+mov tl0,#3ch
+mov th0,#5dh
+cpl p1.0
+reti
+org 0100h
+main: mov r0,#00h
 mov tl0,#3ch
 mov th0,#5dh
 mov tmod,#01h
 mov ie,#82h
 setb tr0
 here: cjne r0,#20h,here //done by MCU, parrellel timers generates delay
-cpl p1.0
 mov r0,#00h
 sjmp here
-
-org 000bh
-inc r0
-mov tl0,#3ch
-mov th0,#5dh
-reti
 end
 ```
 ### Output
-![image](https://github.com/user-attachments/assets/68303199-652c-413c-836b-b0a63493bd5c)
+![image](https://github.com/user-attachments/assets/d1aebeed-e747-4420-b359-31b7243b4ad8)
 
 
+## Write a delay routine of 0.5ms, which is called 100 times which in turn is called 20 times.
 ### Code
 ``` Assembly
-ORG 0000H
-SJMP MAIN
+org 0000h 
+ljmp 0300h
+org 0300h
+mov r0,#00h 
+mov tl0,#0ch 
+mov th0,#0feh 
+mov tmod,#01h 
+mov ie,#82h 
+setb tr0 
+here1:mov r1,#100
+here: cjne r0,#20,here  
+mov r0,#00h 
+djnz r1,here
+cpl p1.0 
+sjmp here1
 
-ORG 0030H
-MAIN: MOV R0, #00H
-MOV TL0, #3CH
-MOV TH0, #5CH
-MOV TMOD, #01H
-MOV IE, #82H
-SETB TR0
-THERE:
-HERE: CJNE R0, #100, HERE
-CPL P1.0
-MOV R0, #00H
-SJMP HERE
-
-ORG 000BH
-INC R0
-MOV R1, #20H
-MOV TL0, #3CH
-MOV TH0, #5CH
-DJNZ R1, THERE
-RETI
-END
+org 000bh 
+inc r0 
+clr tr0
+mov tl0,#0ch 
+mov th0,#0feh 
+clr tf0
+setb tr0
+reti 
+end
 ```
+### Output
+![image](https://github.com/user-attachments/assets/5e4c16c6-a9a5-4300-aad8-5a75b54f9c68)
+
