@@ -56,3 +56,56 @@ end
 ### Output
 ![image](https://github.com/user-attachments/assets/5e4c16c6-a9a5-4300-aad8-5a75b54f9c68)
 
+## Every time you push the button the accumulator is incremented by one and the content is transferred to an external memory location
+### Code
+``` Assembly
+ORG 0000H        
+LJMP MAIN
+ORG 0003H        
+INC A
+MOVX @DPTR, A
+RETI
+ORG 0100H
+MAIN:
+CLR A
+MOV IE, #81H     
+MOV DPTR, #300H    
+SETB TCON.0
+HERE: SJMP HERE
+END
+```
+### Outputs
+![image](https://github.com/user-attachments/assets/4d057904-1047-4b87-baac-fe760d789b8e)
+![image](https://github.com/user-attachments/assets/0d82ed6f-d064-4590-8cb3-106e8752a4a3)
+
+## Every time you push the button the accumulator is incremented by one and the content is transferred to an external memory location, also check the debounce this time
+
+### Code
+``` Assembly
+ORG 0000H        
+LJMP MAIN
+ORG 0003H        
+ACALL DEBOUNCE
+INC A
+MOVX @DPTR, A
+RETI
+ORG 0100H
+MAIN:
+CLR A
+MOV IE, #81H     
+MOV DPTR, #300H    
+SETB TCON.0
+YO: SJMP YO
+DEBOUNCE: 
+MOV R2, #20
+AGAIN: MOV R3, #250
+HERE: NOP
+NOP 
+DJNZ R3, HERE
+DJNZ R2, AGAIN // 4 x 250 x 1 x 20 = 20ms + 3 x 0.02 = 20.06ms
+RET
+END
+```
+### Output
+![image](https://github.com/user-attachments/assets/98d1ad01-cfa5-4e17-96e4-b04e3c016f8e)
+![image](https://github.com/user-attachments/assets/5dd2b720-7c01-4162-b1bf-76663c7157f6)
