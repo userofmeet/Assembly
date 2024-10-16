@@ -30,6 +30,14 @@ end
 ``` Assembly
 org 0000h 
 ljmp 0300h
+org 000bh 
+inc r0 
+clr tr0
+mov tl0,#0ch 
+mov th0,#0feh 
+clr tf0
+setb tr0
+reti
 org 0300h
 mov r0,#00h 
 mov tl0,#0ch 
@@ -42,16 +50,7 @@ here: cjne r0,#20,here
 mov r0,#00h 
 djnz r1,here
 cpl p1.0 
-sjmp here1
-
-org 000bh 
-inc r0 
-clr tr0
-mov tl0,#0ch 
-mov th0,#0feh 
-clr tf0
-setb tr0
-reti 
+sjmp here1 
 end
 ```
 ### Output
